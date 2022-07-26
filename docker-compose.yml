@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  crypto-frontend:
+    container_name: crypto-frontend
+    image: crypto-frontend
+    build:
+      context: .
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "4000:4000"
