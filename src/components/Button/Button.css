@@ -1,0 +1,23 @@
+button.button {
+    padding: 12px 24px;
+    background: #49CD5E;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-family: 'Red Hat Display', 'sans-serif';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+button.button:hover {
+    background: #223CC7;
+}
+
+button.button:disabled {
+    background: #E1E8ED;
+}

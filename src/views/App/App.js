@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { io } from "socket.io-client";
+import Toolbar from "../../components/Toolbar/Toolbar";
 
-
-function App() {
+const App = () => {
   const socket = io("http://localhost:3000", {secure: true});
 
   socket.on('connect', () => {
@@ -11,8 +11,8 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <h1>Exchange</h1>
+    <div className="app">
+      <Toolbar />
     </div>
   );
 }

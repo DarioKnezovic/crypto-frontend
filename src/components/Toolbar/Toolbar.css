@@ -1,0 +1,13 @@
+.toolbar {
+    padding: 60px 0 45px 220px;
+}
+
+.toolbar > .title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 37px;
+    letter-spacing: 0;
+    text-align: left;
+
+}
