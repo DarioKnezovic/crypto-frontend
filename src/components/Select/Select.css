@@ -11,23 +11,89 @@
     color: #9C9C9C;
 }
 
-.input-group > select {
-    width: 200px;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    background: #ffffff;
+#button-select {
     font-family: 'Red Hat Display', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     color: #000000;
     line-height: 21px;
-    padding: 13px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background: transparent;
+    width: 250px;
+    padding: 13px 16px 8px 16px;
+    position: relative;
+    text-align: left;
     margin-top: 20px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='grey' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: 50%;
+}
+
+#button-select:hover {
+    cursor: pointer;
+}
+
+#button-select::after {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "\25be";
+    color: #9C9C9C;
+}
+
+#button-select.expanded::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+ul.options {
+    width: 250px;
+    display: none;
+    list-style: none;
+    background: #FFFFFF;
+    position: absolute !important;
+    z-index: 99 !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    border-collapse: separate;
+}
+
+ul.show {
+    display: block;
+}
+
+ul.options li {
+    padding: 12px 24px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: #565656;
+}
+
+ul.options li:first-child {
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+ul.options li:last-child {
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+ul.options li:active,
+ul.options li:focus,
+ul.options li:hover,
+ul.options li[aria-selected="true"] {
+    background: #eeeeee;
+    cursor: pointer;
+    border-collapse: separate;
 }
