@@ -1,5 +1,6 @@
 .input-group {
     position: relative;
+    padding-top: 20px;
 }
 
 .input-group > label {
@@ -26,6 +27,8 @@
     position: relative;
     text-align: left;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
 #button-select:hover {
@@ -45,6 +48,12 @@
     transform: translateY(-50%) rotate(180deg);
 }
 
+#button-select:disabled,
+#button-select[disabled]{
+    border: 1px solid #E0E0E0;
+    background-color: #EEEEEE;
+    color: #666666;
+}
 ul.options {
     width: 250px;
     display: none;
@@ -69,6 +78,14 @@ ul.options li {
     font-size: 16px;
     line-height: 21px;
     color: #565656;
+    display: flex;
+    align-items: center;
+}
+
+.option-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
 }
 
 ul.options li:first-child {
@@ -96,4 +113,5 @@ ul.options li[aria-selected="true"] {
     background: #eeeeee;
     cursor: pointer;
     border-collapse: separate;
+    color: #565656;
 }

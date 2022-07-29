@@ -4,14 +4,18 @@ import "./Toolbar.css";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import Button from "../Button/Button";
+import constants from "../../constants";
 
 const Toolbar = () => {
     return (
         <div className="toolbar">
             <h1 className="title">Exchange</h1>
 
-            <Select />
+            <Select label="Currency from" options={constants.CRYPTO_CURRENCIES} />
             <TextInput />
+            <Select label="Currency from" options={constants.CURRENCIES} disabled={true} />
+            <TextInput />
+
             <Button />
         </div>
     )
