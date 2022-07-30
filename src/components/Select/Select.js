@@ -69,12 +69,11 @@ const Select = (props) => {
         <div className="input-group">
             <label>{props.label}</label>
             <button
-                id="button-select"
                 type="button"
                 disabled={props.disabled}
                 aria-haspopup="listbox"
                 aria-expanded={isOptionsOpen}
-                className={isOptionsOpen ? "expanded" : ""}
+                className={`button-select ${isOptionsOpen ? "expanded" : ""}`}
                 onClick={toggleOptions}
                 onKeyDown={handleListKeyDown}
             >

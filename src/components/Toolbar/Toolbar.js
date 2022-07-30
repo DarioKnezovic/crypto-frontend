@@ -11,12 +11,15 @@ const Toolbar = () => {
         <div className="toolbar">
             <h1 className="title">Exchange</h1>
 
-            <Select label="Currency from" options={constants.CRYPTO_CURRENCIES} />
-            <TextInput />
-            <Select label="Currency from" options={constants.CURRENCIES} disabled={true} />
-            <TextInput />
+            <div className="flex-group">
+                <Select label="Currency from" options={constants.CRYPTO_CURRENCIES} />
+                <TextInput label="Amount" />
+                <div className="equals-sign">=</div>
+                <Select label="Currency from" options={constants.CURRENCIES} disabled={true} />
+                <TextInput label="Amount" />
 
-            <Button />
+                <Button label="Save" />
+            </div>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 .input-group {
     position: relative;
-    padding-top: 20px;
 }
 
 .input-group > label {
@@ -12,18 +11,18 @@
     color: #9C9C9C;
 }
 
-#button-select {
+.button-select {
     font-family: 'Red Hat Display', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     color: #000000;
-    line-height: 21px;
     border: 1px solid #E0E0E0;
     border-radius: 8px;
     background: transparent;
-    width: 250px;
-    padding: 13px 16px 8px 16px;
+    width: 200px;
+    max-height: 42px;
+    padding: 10px 16px 8px 16px;
     position: relative;
     text-align: left;
     margin-top: 20px;
@@ -31,11 +30,11 @@
     align-items: center;
 }
 
-#button-select:hover {
+.button-select:hover {
     cursor: pointer;
 }
 
-#button-select::after {
+.button-select::after {
     position: absolute;
     right: 16px;
     top: 50%;
@@ -44,12 +43,12 @@
     color: #9C9C9C;
 }
 
-#button-select.expanded::after {
+.button-select.expanded::after {
     transform: translateY(-50%) rotate(180deg);
 }
 
-#button-select:disabled,
-#button-select[disabled]{
+.button-select:disabled,
+.button-select[disabled]{
     border: 1px solid #E0E0E0;
     background-color: #EEEEEE;
     color: #666666;

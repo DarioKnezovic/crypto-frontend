@@ -9,5 +9,23 @@
     line-height: 37px;
     letter-spacing: 0;
     text-align: left;
+}
 
+.toolbar > .flex-group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.toolbar .equals-sign {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
 }

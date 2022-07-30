@@ -1,5 +1,11 @@
 button.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     padding: 12px 24px;
+    width: 84px;
+    height: 40px;
     background: #49CD5E;
     border-radius: 8px;
     border: none;
@@ -12,6 +18,12 @@ button.button {
     line-height: 16px;
     text-align: center;
     cursor: pointer;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
 }
 
 button.button:hover {
