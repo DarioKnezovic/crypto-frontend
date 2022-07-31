@@ -1,5 +1,6 @@
 .toolbar {
     padding: 60px 0 45px 220px;
+    box-shadow: 0 8px 16px rgba(17, 17, 17, 0.06);
 }
 
 .toolbar > .title {
@@ -9,6 +10,7 @@
     line-height: 37px;
     letter-spacing: 0;
     text-align: left;
+    margin-bottom: 27px;
 }
 
 .toolbar > .flex-group {

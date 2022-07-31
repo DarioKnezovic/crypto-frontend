@@ -1,0 +1,11 @@
+.history {
+    padding: 52px 0 105px 220px;
+}
+
+.history > .title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #000000;
+}
