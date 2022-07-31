@@ -1,0 +1,68 @@
+table.data-table {
+    margin-top: 45px;
+    border-radius: 4px;
+    border-spacing:0;
+    border-collapse: collapse;
+    width: 1095px;
+}
+
+table.data-table > thead {
+    background: #EEEEEE;
+    height: 30px;
+}
+
+table.data-table > thead > tr > th {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    text-align: left;
+    padding: 5px 9px;
+}
+
+table.data-table > thead > tr > th:first-child {
+    font-weight: 700;
+}
+
+table.data-table .column-icon {
+    margin-right: 9px;
+}
+
+table.data-table > tbody > tr > td {
+    padding: 16px 8px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    position: relative;
+}
+
+table.data-table > tbody > tr > td:after {
+    content: '';
+    position: absolute;
+    height: 16px;
+    border: 0.5px solid #EEEEEE;
+    right: 0;
+}
+
+table.data-table > tbody > tr:nth-child(2) {
+    background: #EEEEEE;
+}
+
+table.data-table > tbody > tr > td.live-price {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #5DBE7E;
+}
+
+table.data-table > tbody > tr > td.exchanged {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #6368DF;
+}
