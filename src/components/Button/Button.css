@@ -33,3 +33,13 @@ button.button:hover {
 button.button:disabled {
     background: #E1E8ED;
 }
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    button.button {
+        width: 100%;
+    }
+}

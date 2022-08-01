@@ -7,15 +7,32 @@ const Select = (props) => {
     const [isOptionsOpen, setIsOptionsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(0);
 
+    /*
+     * Display or hide options.
+     *
+     * @return void
+     */
     const toggleOptions = () => {
         setIsOptionsOpen(!isOptionsOpen);
     };
 
+    /*
+     * Store selected option index.
+     * @param index Integer
+     *
+     * @return void
+     */
     const setSelectedThenCloseDropdown = (index) => {
         setSelectedOption(index);
         setIsOptionsOpen(false);
     };
 
+    /*
+     * Handle event on list item.
+     * @param index Integer
+     *
+     * @return void
+     */
     const handleKeyDown = (index) => (e) => {
         switch (e.key) {
             case " ":
@@ -29,6 +46,12 @@ const Select = (props) => {
         }
     };
 
+    /*
+     * Handle event on button and unordered list.
+     * @param e HTMLEvent
+     *
+     * @return void
+     */
     const handleListKeyDown = (e) => {
         switch (e.key) {
             case "Escape":
@@ -52,6 +75,12 @@ const Select = (props) => {
         }
     };
 
+    /*
+     * Dynamic check specific select option have icon, if have display it
+     * @param option Object
+     *
+     * @return undefined|HTMLElement
+     */
     const showOptionIcon = (option) => {
         if (!option.icon) {
             return;

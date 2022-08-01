@@ -12,3 +12,26 @@
     line-height: 19px;
     color: #000000;
 }
+
+.text-input:hover {
+    border: 1px solid #B5D9BB;
+}
+
+.text-input:focus {
+    outline: none;
+    border: 1px solid #49CD5E;
+}
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    .input-group {
+        width: 100%;
+    }
+
+    .text-input {
+        width: 100%;
+    }
+}

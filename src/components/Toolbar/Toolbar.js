@@ -15,7 +15,7 @@ const Toolbar = () => {
                 <Select label="Currency from" options={constants.CRYPTO_CURRENCIES} />
                 <TextInput label="Amount" />
                 <div className="equals-sign">=</div>
-                <Select label="Currency from" options={constants.CURRENCIES} disabled={true} />
+                <Select label="Currency to" options={constants.CURRENCIES} disabled={true} />
                 <TextInput label="Amount" />
 
                 <Button label="Save" />

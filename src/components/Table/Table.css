@@ -1,5 +1,4 @@
 table.data-table {
-    margin-top: 45px;
     border-radius: 4px;
     border-spacing:0;
     border-collapse: collapse;
@@ -39,7 +38,7 @@ table.data-table > tbody > tr > td {
     position: relative;
 }
 
-table.data-table > tbody > tr > td:after {
+table.data-table > tbody > tr > td:not(:last-child):after {
     content: '';
     position: absolute;
     height: 16px;

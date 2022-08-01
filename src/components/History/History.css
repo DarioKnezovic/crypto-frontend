@@ -8,4 +8,31 @@
     font-weight: 700;
     font-size: 18px;
     color: #000000;
+    margin-bottom: 45px;
+}
+
+.history > .history-data-mobile {
+    display: none;
+}
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    .history {
+        padding: 24px 16px 24px;
+    }
+
+    .history > .title {
+        margin-bottom: 20px;
+    }
+
+    .history > table.data-table {
+        display: none;
+    }
+
+    .history > .history-data-mobile {
+        display: flex;
+    }
 }

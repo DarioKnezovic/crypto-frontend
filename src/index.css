@@ -3,6 +3,14 @@
   margin: 0;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Red Hat Display', sans-serif;
   -webkit-font-smoothing: antialiased;

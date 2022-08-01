@@ -31,3 +31,21 @@
     font-size: 14px;
     color: #000000;
 }
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    .toolbar {
+        padding: 36px 25px 48px;
+    }
+
+    .toolbar > .flex-group {
+        flex-direction: column;
+    }
+
+    .toolbar .equals-sign {
+        display: none;
+    }
+}

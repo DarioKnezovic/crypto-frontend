@@ -6,6 +6,12 @@ import "./Table.css";
 
 const Table = (props) => {
 
+    /*
+     * Check is exists icon for specific column. If yes, then show it.
+     * @param column Object
+     *
+     * @return undefined|HTMLElement
+     */
     const checkColumnIcon = (column) => {
         if (!column.icon) {
             return;
@@ -19,12 +25,24 @@ const Table = (props) => {
         )
     }
 
+    /*
+     * Render table header from passed column property.
+     *
+     * @return HTMLElement
+     */
     const renderTableHeader = () => {
         return props.columns.map((column, index) => (
             <th key={index}>{checkColumnIcon(column)} {column.name}</th>
         ))
     }
 
+    /*
+     * Render row dynamically from column value key.
+     * @param item Object
+     * @param rowIndex Integer
+     *
+     * @param HTMLElement
+     */
     const renderDataRow = (item, rowIndex) => {
         return (
             <tr key={rowIndex}>
@@ -35,6 +53,11 @@ const Table = (props) => {
         )
     }
 
+    /*
+     * Render data from passed property called data.
+     *
+     * return HTMLElement
+     */
     const renderData = () => {
         return props.data.map((item, index) => renderDataRow(item, index))
     }

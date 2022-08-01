@@ -2,6 +2,7 @@ import React from "react";
 
 import "./History.css";
 import Table from "../Table/Table";
+import DataMobile from "./DataMobile/DataMobile";
 
 const History = () => {
 
@@ -58,6 +59,7 @@ const History = () => {
             <h1 className="title">History</h1>
 
             <Table columns={columns} data={data} />
+            <DataMobile data={data} />
         </div>
     )
 }

@@ -32,6 +32,7 @@
 
 .button-select:hover {
     cursor: pointer;
+    border: 1px solid #B5D9BB;
 }
 
 .button-select::after {
@@ -113,4 +114,18 @@ ul.options li[aria-selected="true"] {
     cursor: pointer;
     border-collapse: separate;
     color: #565656;
+}
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    .input-group {
+        width: 100%;
+    }
+
+    .button-select {
+        width: 100%;
+    }
 }
