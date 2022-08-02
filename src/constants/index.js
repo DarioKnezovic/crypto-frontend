@@ -14,5 +14,10 @@ export default {
             name: 'USD',
             icon: 'usd.svg'
         }
-    ]
+    ],
+    SOCKET_URL: 'http://localhost:3000',
+    SOCKET_EVENTS: {
+       CONNECT: 'connect',
+       LATEST_CURRENCY_RATES: 'currency_rates'
+    }
 }
