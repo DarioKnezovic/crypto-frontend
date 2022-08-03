@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './views/App/App';
 import reportWebVitals from './reportWebVitals';
+import {CurrencyRatesContextProvider} from './context/CurrencyRates'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <CurrencyRatesContextProvider>
+      <App />
+  </CurrencyRatesContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./History.css";
 import Table from "../Table/Table";
 import DataMobile from "./DataMobile/DataMobile";
+import CurrencyRatesContext from "../../context/CurrencyRates";
 
 const History = () => {
+    const currencyRatesCtx = useContext(CurrencyRatesContext);
 
     const columns = [
         {
@@ -58,7 +60,7 @@ const History = () => {
         <div className="history">
             <h1 className="title">History</h1>
 
-            <Table columns={columns} data={data} />
+            <Table columns={columns} data={currencyRatesCtx.history} />
             <DataMobile data={data} />
         </div>
     )
