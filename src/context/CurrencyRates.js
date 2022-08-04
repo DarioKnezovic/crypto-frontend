@@ -7,6 +7,7 @@ import constants from "../constants";
 const CurrencyRatesContext = createContext({
     currencyRates: {},
     history: [],
+    updateHistory: (data) => {},
 })
 
 export const CurrencyRatesContextProvider = (props) => {
@@ -17,12 +18,28 @@ export const CurrencyRatesContextProvider = (props) => {
         const socket = io(constants.SOCKET_URL, {secure: true});
 
         socket.on(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES, (data) => {
-            console.log(data)
             setCurrencyRates(data)
             updateHistoryForLivePrice(data)
         })
     }, [])
 
+    /*
+     * Send exchange history to the backend.
+     * @param data Object
+     *
+     * @return void
+     */
+    const updateHistory = (data) => {
+        console.log(data)
+    }
+
+    /*
+     * Create data of live price for Bitcoin (index one) and Ethereum (index two).
+     * @param fetchedHistoryData Object
+     * @param currencyIndex string
+     *
+     * @return Object
+     */
     const createHistoryDataFromLivePrice = (fetchedHistoryData, currencyIndex) => {
         let historyDataItem = {};
 
@@ -30,12 +47,18 @@ export const CurrencyRatesContextProvider = (props) => {
         historyDataItem.currency_from = fetchedHistoryData[`currency_${currencyIndex}_name`];
         historyDataItem.amount_one = 1;
         historyDataItem.currency_to = fetchedHistoryData.base;
-        historyDataItem.amount_two = utils.getReversedValue(fetchedHistoryData[`currency_${currencyIndex}_rate`]);
+        historyDataItem.amount_two = utils.getUSDValueFromCryptoCurrency(1, fetchedHistoryData[`currency_${currencyIndex}_rate`]);
         historyDataItem.type = constants.HISTORY_TYPES.LIVE_PRICE;
 
         return historyDataItem;
     }
 
+    /*
+     * Update history of live price received from backend side
+     * @param data Object
+     *
+     * @return void
+     */
     const updateHistoryForLivePrice = (data) => {
         let historyData = [];
 
@@ -45,7 +68,7 @@ export const CurrencyRatesContextProvider = (props) => {
         setHistory(historyData);
     }
 
-    return <CurrencyRatesContext.Provider value={{currencyRates, history}}>{props.children}</CurrencyRatesContext.Provider>
+    return <CurrencyRatesContext.Provider value={{currencyRates, history, updateHistory}}>{props.children}</CurrencyRatesContext.Provider>
 }
 
 export default CurrencyRatesContext;

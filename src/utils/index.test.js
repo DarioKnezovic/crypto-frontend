@@ -49,7 +49,7 @@ test('Function toKebabCase should return correct value', () => {
     })
 })
 
-test('Function getReversedValue should return correct value', () => {
+test('Function getUSDValueFromCryptoCurrency should return correct value', () => {
     const testCases = [
         {
             value: 1,
@@ -82,7 +82,7 @@ test('Function getReversedValue should return correct value', () => {
     ]
 
     testCases.forEach(testCase => {
-        expect(utils.getReversedValue(testCase.value)).toBe(testCase.expected)
+        expect(utils.getUSDValueFromCryptoCurrency(testCase.value)).toBe(testCase.expected)
     })
 })
 

@@ -1,4 +1,4 @@
-.text-input {
+.form-input {
     margin-top: 20px;
     background: #FFFFFF;
     border: 1px solid #E0E0E0;
@@ -13,13 +13,31 @@
     color: #000000;
 }
 
-.text-input:hover {
+.form-input:hover {
     border: 1px solid #B5D9BB;
 }
 
-.text-input:focus {
+.form-input:focus {
     outline: none;
     border: 1px solid #49CD5E;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-input:disabled {
+    border: 1px solid #E0E0E0;
+    background-color: #EEEEEE;
+    color: #666666;
 }
 
 /*
@@ -31,7 +49,7 @@
         width: 100%;
     }
 
-    .text-input {
+    .form-input {
         width: 100%;
     }
 }

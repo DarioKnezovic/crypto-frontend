@@ -17,19 +17,19 @@ const toKebabCase = (str) => {
 }
 
 /*
- * Function which convert reverse value of currency.
+ * Function which convert reverse value of currency or in our case USD.
  * Example: 1USD is equal 0,000043BTC and how much is 1BTC?
  * @param value Integer
  *
  * @return Float
  */
-const getReversedValue = (value) => {
+const getUSDValueFromCryptoCurrency = (cryptoValue, usdValue) => {
 
-    if (typeof value !== "number") {
+    if (typeof cryptoValue !== "number" || typeof usdValue !== "number") {
         return 0
     }
 
-    return 1/value;
+    return cryptoValue/usdValue;
 }
 
 /*
@@ -72,6 +72,6 @@ const isValidDate = (d) => {
 
 export default {
     toKebabCase,
-    getReversedValue,
+    getUSDValueFromCryptoCurrency,
     formatDate
 }

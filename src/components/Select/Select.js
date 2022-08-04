@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import "./Select.css";
 import PropTypes from 'prop-types';
@@ -7,6 +7,9 @@ const Select = (props) => {
     const [isOptionsOpen, setIsOptionsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(0);
 
+    useEffect(() => {
+        props.handleChange(null, props.property, props.options[selectedOption].value)
+    }, [selectedOption])
     /*
      * Display or hide options.
      *
@@ -144,6 +147,9 @@ Select.defaultProps = {
 Select.propTypes = {
     label: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
+    property: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool
 }
 
