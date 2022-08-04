@@ -13,13 +13,20 @@ const CurrencyRatesContext = createContext({
 export const CurrencyRatesContextProvider = (props) => {
     const [currencyRates, setCurrencyRates] = useState({})
     const [history, setHistory] = useState([])
+    const [socket, setSocket] = useState(null)
 
     useEffect(() => {
-        const socket = io(constants.SOCKET_URL, {secure: true});
+        const newSocket = io(constants.SOCKET_URL, {secure: true})
+        setSocket(newSocket)
 
-        socket.on(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES, (data) => {
+        newSocket.on(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES, (data) => {
+            console.log(data)
             setCurrencyRates(data)
             updateHistoryForLivePrice(data)
+        })
+
+        newSocket.on(constants.SOCKET_EVENTS.EXCHANGES_HISTORY, (data) => {
+            console.log(data)
         })
     }, [])
 
@@ -31,6 +38,7 @@ export const CurrencyRatesContextProvider = (props) => {
      */
     const updateHistory = (data) => {
         console.log(data)
+        socket.emit(constants.SOCKET_EVENTS.SAVE_EXCHANGE, data);
     }
 
     /*

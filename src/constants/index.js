@@ -42,7 +42,9 @@ export default {
     },
     SOCKET_URL: 'http://localhost:3000',
     SOCKET_EVENTS: {
-       CONNECT: 'connect',
-       LATEST_CURRENCY_RATES: 'currency_rates'
+        CONNECT: 'connect',
+        LATEST_CURRENCY_RATES: 'currency_rates',
+        SAVE_EXCHANGE: 'save_exchange',
+        EXCHANGES_HISTORY: 'exchanges_history'
     }
 }

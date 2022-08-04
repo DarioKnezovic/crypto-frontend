@@ -20,14 +20,31 @@ const Toolbar = () => {
     const currencyRatesCtx = useContext(CurrencyRatesContext);
 
     /*
+     * Check is BTC or ETH from currency_from.
+     *
+     * @return String
+     */
+    const checkCryptoFromAmount = () => {
+        if (exchange.currency_from === constants.CRYPTO_CURRENCIES[0].value) {
+            return constants.CURRENCY_RATE_BACKEND_PAYLOAD.CURRENCY_ONE_RATE;
+        }
+
+        if (exchange.currency_from === constants.CRYPTO_CURRENCIES[1].value) {
+            return constants.CURRENCY_RATE_BACKEND_PAYLOAD.CURRENCY_TWO_RATE;
+        }
+
+        return '';
+    }
+
+    /*
      * When is changed value of amount_one, we have to convert with cryptocurrency specified in currency_from it and place in amount_two.
      * @param formValue String
      *
      * @return void
      */
     const updateAmountTwoValue = (formValue) => {
-        const currencyRateKey = exchange.currency_from === constants.CURRENCY_SHORTCODES.BTC ?
-            constants.CURRENCY_RATE_BACKEND_PAYLOAD.CURRENCY_ONE_RATE : constants.CURRENCY_RATE_BACKEND_PAYLOAD.CURRENCY_TWO_RATE;
+        const currencyRateKey = checkCryptoFromAmount();
+
         const currencyRate = currencyRatesCtx.currencyRates[currencyRateKey];
         if (currencyRate) {
             const amountTwoValue = utils.getUSDValueFromCryptoCurrency(parseInt(formValue), currencyRate);
