@@ -45,7 +45,7 @@ const Table = (props) => {
      */
     const renderDataRow = (item, rowIndex) => {
         return (
-            <tr key={rowIndex}>
+            <tr className={rowIndex % 2 === 0 ? 'white-bg' : 'grey-bg'} key={rowIndex}>
                 {props.columns.map((column, index) =>
                     <td className={column.valueAsClass ? utils.toKebabCase(item[column.key]) : ''} key={index}>{item[column.key]}</td>
                 )}

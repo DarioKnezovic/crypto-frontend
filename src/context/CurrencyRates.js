@@ -20,13 +20,13 @@ export const CurrencyRatesContextProvider = (props) => {
         setSocket(newSocket)
 
         newSocket.on(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES, (data) => {
-            console.log(data)
             setCurrencyRates(data)
             updateHistoryForLivePrice(data)
+            newSocket.emit(constants.SOCKET_EVENTS.GET_CHANGES_HISTORY)
         })
 
         newSocket.on(constants.SOCKET_EVENTS.EXCHANGES_HISTORY, (data) => {
-            console.log(data)
+            updateHistoryWithExchanges(data)
         })
     }, [])
 
@@ -37,7 +37,6 @@ export const CurrencyRatesContextProvider = (props) => {
      * @return void
      */
     const updateHistory = (data) => {
-        console.log(data)
         socket.emit(constants.SOCKET_EVENTS.SAVE_EXCHANGE, data);
     }
 
@@ -74,6 +73,17 @@ export const CurrencyRatesContextProvider = (props) => {
         historyData[1] = createHistoryDataFromLivePrice(data, 'two');
 
         setHistory(historyData);
+    }
+
+    /*
+     * Append exchange data in exchange state.
+     * @param data Object
+     *
+     * @return void
+     */
+    const updateHistoryWithExchanges = (data) => {
+        let historyData = [...history]
+        setHistory(prevState => [...new Set([prevState[0], prevState[1], ...data])])
     }
 
     return <CurrencyRatesContext.Provider value={{currencyRates, history, updateHistory}}>{props.children}</CurrencyRatesContext.Provider>

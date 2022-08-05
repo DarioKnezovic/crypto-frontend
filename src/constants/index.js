@@ -7,7 +7,7 @@ export default {
         },
         {
             name: 'Ethereum',
-            value: 'BTC',
+            value: 'ETH',
             icon: 'eth.svg'
         }
     ],
@@ -45,6 +45,7 @@ export default {
         CONNECT: 'connect',
         LATEST_CURRENCY_RATES: 'currency_rates',
         SAVE_EXCHANGE: 'save_exchange',
-        EXCHANGES_HISTORY: 'exchanges_history'
+        EXCHANGES_HISTORY: 'exchanges_history',
+        GET_CHANGES_HISTORY: 'get_exchanges_history'
     }
 }
