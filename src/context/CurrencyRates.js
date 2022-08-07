@@ -16,7 +16,7 @@ export const CurrencyRatesContextProvider = (props) => {
     const [socket, setSocket] = useState(null)
 
     useEffect(() => {
-        const newSocket = io(constants.SOCKET_URL, {secure: true})
+        const newSocket = io(constants.SOCKET_URL, {secure: true});
         setSocket(newSocket)
 
         newSocket.on(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES, (data) => {
@@ -28,6 +28,17 @@ export const CurrencyRatesContextProvider = (props) => {
         newSocket.on(constants.SOCKET_EVENTS.EXCHANGES_HISTORY, (data) => {
             updateHistoryWithExchanges(data)
         })
+
+        newSocket.on(constants.SOCKET_EVENTS.CURRENCY_RATES_UPDATE, (data) => {
+            updateCurrencyPriceInHistory(data)
+        })
+
+        return () => {
+            newSocket.off(constants.SOCKET_EVENTS.CONNECT);
+            newSocket.off(constants.SOCKET_EVENTS.LATEST_CURRENCY_RATES);
+            newSocket.off(constants.SOCKET_EVENTS.EXCHANGES_HISTORY);
+            newSocket.off(constants.SOCKET_EVENTS.CURRENCY_RATES_UPDATE);
+        };
     }, [])
 
     /*
@@ -61,18 +72,28 @@ export const CurrencyRatesContextProvider = (props) => {
     }
 
     /*
+     * Parse data received from backend side to adjust live price of cryptocurrencies
+     * @param data Object
+     *
+     * @return Array
+     */
+    const parseLivePriceData = (data) => {
+        let historyData = [];
+
+        historyData[0] = createHistoryDataFromLivePrice(data, 'one');
+        historyData[1] = createHistoryDataFromLivePrice(data, 'two');
+
+        return historyData;
+    }
+
+    /*
      * Update history of live price received from backend side
      * @param data Object
      *
      * @return void
      */
     const updateHistoryForLivePrice = (data) => {
-        let historyData = [];
-
-        historyData[0] = createHistoryDataFromLivePrice(data, 'one');
-        historyData[1] = createHistoryDataFromLivePrice(data, 'two');
-
-        setHistory(historyData);
+        setHistory(parseLivePriceData(data));
     }
 
     /*
@@ -82,8 +103,19 @@ export const CurrencyRatesContextProvider = (props) => {
      * @return void
      */
     const updateHistoryWithExchanges = (data) => {
-        let historyData = [...history]
         setHistory(prevState => [...new Set([prevState[0], prevState[1], ...data])])
+    }
+
+    /*
+     * Adjust live price when is received from backend
+     * @param data Object
+     *
+     * @return void
+     */
+    const updateCurrencyPriceInHistory = (data) => {
+        let historyData = parseLivePriceData(data);
+
+        setHistory(prevState => [...historyData, ...prevState.slice(2)])
     }
 
     return <CurrencyRatesContext.Provider value={{currencyRates, history, updateHistory}}>{props.children}</CurrencyRatesContext.Provider>

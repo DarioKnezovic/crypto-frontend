@@ -46,6 +46,7 @@ export default {
         LATEST_CURRENCY_RATES: 'currency_rates',
         SAVE_EXCHANGE: 'save_exchange',
         EXCHANGES_HISTORY: 'exchanges_history',
-        GET_CHANGES_HISTORY: 'get_exchanges_history'
+        GET_CHANGES_HISTORY: 'get_exchanges_history',
+        CURRENCY_RATES_UPDATE: 'currency_rates_update'
     }
 }
