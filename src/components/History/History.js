@@ -4,6 +4,7 @@ import "./History.css";
 import Table from "../Table/Table";
 import DataMobile from "./DataMobile/DataMobile";
 import CurrencyRatesContext from "../../context/CurrencyRates";
+import utils from "../../utils";
 
 const History = () => {
     const currencyRatesCtx = useContext(CurrencyRatesContext);
@@ -12,7 +13,8 @@ const History = () => {
         {
             name: 'Date & Time',
             icon: 'sort.svg',
-            key: 'date'
+            key: 'date',
+            format: utils.formatDate,
         },
         {
             name: 'Currency From',
@@ -37,31 +39,12 @@ const History = () => {
         }
     ];
 
-    const data = [
-        {
-            date: '22/01/2022 20:45',
-            currency_from: 'Bitcoin',
-            amount_one: '1',
-            currency_to: 'USD',
-            amount_two: '48000,00',
-            type: 'Live price'
-        },
-        {
-            date: '22/01/2022 15:45',
-            currency_from: 'Bitcoin',
-            amount_one: '2',
-            currency_to: 'EUR',
-            amount_two: '2.56565656',
-            type: 'Exchanged'
-        }
-    ]
-
     return (
         <div className="history">
             <h1 className="title">History</h1>
 
             <Table columns={columns} data={currencyRatesCtx.history} />
-            <DataMobile data={data} />
+            <DataMobile data={currencyRatesCtx.history} />
         </div>
     )
 }

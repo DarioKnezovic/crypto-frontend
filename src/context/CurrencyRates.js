@@ -61,7 +61,7 @@ export const CurrencyRatesContextProvider = (props) => {
     const createHistoryDataFromLivePrice = (fetchedHistoryData, currencyIndex) => {
         let historyDataItem = {};
 
-        historyDataItem.date = utils.formatDate(fetchedHistoryData.time);
+        historyDataItem.date = fetchedHistoryData.time;
         historyDataItem.currency_from = fetchedHistoryData[`currency_${currencyIndex}_name`];
         historyDataItem.amount_one = 1;
         historyDataItem.currency_to = fetchedHistoryData.base;

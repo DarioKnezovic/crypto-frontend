@@ -52,37 +52,34 @@ test('Function toKebabCase should return correct value', () => {
 test('Function getUSDValueFromCryptoCurrency should return correct value', () => {
     const testCases = [
         {
-            value: 1,
+            cryptoValue: 1,
+            usdValue: 1,
             expected: 1
         },
         {
-            value: 2,
+            cryptoValue: 2,
+            usdValue: 4,
             expected: 0.5
         },
         {
-            value: 0.000043,
-            expected: 23255.81395348837
-        },
-        {
-            value: 2.56565656,
-            expected: 0.3897637803868808
-        },
-        {
-            value: null,
+            cryptoValue: null,
+            usdValue: null,
             expected: 0
         },
         {
-            value: undefined,
+            cryptoValue: undefined,
+            usdValue: 1,
             expected: 0
         },
         {
-            value: 'test',
+            cryptoValue: 'test',
+            usdValue: undefined,
             expected: 0
         }
     ]
 
     testCases.forEach(testCase => {
-        expect(utils.getUSDValueFromCryptoCurrency(testCase.value)).toBe(testCase.expected)
+        expect(utils.getUSDValueFromCryptoCurrency(testCase.cryptoValue, testCase.usdValue)).toBe(testCase.expected)
     })
 })
 
@@ -103,6 +100,10 @@ test('Function formatDate should return correct date format', () => {
         {
             value: '2022-07-26T11:57:25.000Z',
             expected: '26/07/2022 11:57'
+        },
+        {
+            value: '2022-07-26T07:05:25.000Z',
+            expected: '26/07/2022 07:05'
         }
     ]
     testCases.forEach(testCase => {
