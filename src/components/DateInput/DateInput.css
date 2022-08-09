@@ -1,0 +1,112 @@
+.react-datepicker {
+    background: #FFFFFF;
+    border: none;
+    box-shadow: 0 8px 16px rgba(17, 17, 17, 0.06);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.react-datepicker__header {
+    background: #FFFFFF;
+    border-bottom: none;
+}
+
+.react-datepicker__current-month {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: #000000;
+    top: 9px;
+}
+
+.react-datepicker__navigation {
+    top: 26px;
+    padding: 0 33px;
+}
+
+.react-datepicker__day-names {
+    margin-top: 13px;
+}
+
+.react-datepicker__day-name {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #9C9C9C;
+    width: 40px;
+}
+
+.react-datepicker__day {
+    background: #EEEEEE;
+    border-radius: 8px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(0,0,0,.4);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+}
+
+.react-datepicker__day--selected {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.react-datepicker__input-container, .react-datepicker-wrapper {
+    width: fit-content;
+}
+.react-datepicker__input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.react-datepicker__input-container > .input-container {
+    position: relative;
+}
+
+.react-datepicker__input-container > label {
+    position: relative;
+}
+
+.date-picker-input {
+    width: fit-content;
+}
+
+.date-picker-label {
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #9C9C9C;
+}
+
+.date-input {
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 13px 16px 8px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.date-picker-icon {
+    position: absolute;
+    z-index: 9;
+    top: 16px;
+    right: 16px;
+}

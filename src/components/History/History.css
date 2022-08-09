@@ -8,11 +8,18 @@
     font-weight: 700;
     font-size: 18px;
     color: #000000;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
 }
 
 .history > .history-data-mobile {
     display: none;
+}
+
+.date-filter {
+    margin-bottom: 45px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
 }
 
 /*

@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import "./History.css";
 import Table from "../Table/Table";
 import DataMobile from "./DataMobile/DataMobile";
 import CurrencyRatesContext from "../../context/CurrencyRates";
 import utils from "../../utils";
+import DateInput from "../DateInput/DateInput";
+import Button from "../Button/Button";
 
 const History = () => {
     const currencyRatesCtx = useContext(CurrencyRatesContext);
+    const [fromDate, setFromDate] = useState(new Date());
+    const [toDate, setToDate] = useState(null);
 
     const columns = [
         {
@@ -39,10 +43,25 @@ const History = () => {
         }
     ];
 
+    const filterByDate = () => {
+
+    }
+
     return (
         <div className="history">
             <h1 className="title">History</h1>
 
+            <div className="date-filter">
+                <DateInput
+                    value={fromDate}
+                    handleChange={setFromDate}
+                    label='From date' />
+                <DateInput
+                    value={toDate}
+                    handleChange={setToDate}
+                    label='From date' />
+                <Button clickHandler={filterByDate} label="Filter" type="secondary" />
+            </div>
             <Table columns={columns} data={currencyRatesCtx.history} />
             <DataMobile data={currencyRatesCtx.history} />
         </div>
