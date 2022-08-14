@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {useContext} from "react";
 
 import "./History.css";
 import Table from "../Table/Table";
@@ -10,8 +10,29 @@ import Button from "../Button/Button";
 
 const History = () => {
     const currencyRatesCtx = useContext(CurrencyRatesContext);
-    const [fromDate, setFromDate] = useState(new Date());
-    const [toDate, setToDate] = useState(null);
+
+    /*
+     * Update `dateFilter` object received from DateInput component
+     * @param property String
+     * @param value String
+     *
+     * @return void
+     */
+    const updateDateFilter = (property, value) => {
+        currencyRatesCtx.setDateFilter(prevState => ({
+            ...prevState,
+            [property]: value
+        }))
+    }
+
+    /*
+     * Dispatch event for changing `filterEnabled` value
+     *
+     * @return void
+     */
+    const triggerFilter = () => {
+        currencyRatesCtx.changeFilterEnabled(prevState => !prevState)
+    }
 
     const columns = [
         {
@@ -43,8 +64,26 @@ const History = () => {
         }
     ];
 
-    const filterByDate = () => {
+    /*
+     * If `filterEnabled` is false then show all history exchanges, but if is true then filter it using `dateFilter`
+     */
+    const filteredHistory = () => {
+        if (!currencyRatesCtx.filterEnabled) {
+            return currencyRatesCtx.history
+        }
 
+        return currencyRatesCtx.history.filter(item => {
+            let filterPass = true
+            const date = new Date(item.date).setHours(0,0,0)
+            if (currencyRatesCtx.dateFilter.from_date) {
+                filterPass = filterPass && (new Date(currencyRatesCtx.dateFilter.from_date).setHours(0,0,0) <= date)
+            }
+            if (currencyRatesCtx.dateFilter.to_date) {
+                filterPass = filterPass && (new Date(currencyRatesCtx.dateFilter.to_date).setHours(0,0,0) >= date)
+            }
+
+            return filterPass;
+        })
     }
 
     return (
@@ -53,16 +92,19 @@ const History = () => {
 
             <div className="date-filter">
                 <DateInput
-                    value={fromDate}
-                    handleChange={setFromDate}
+                    value={currencyRatesCtx.dateFilter.from_date}
+                    property="from_date"
+                    handleChange={updateDateFilter}
                     label='From date' />
                 <DateInput
-                    value={toDate}
-                    handleChange={setToDate}
-                    label='From date' />
-                <Button clickHandler={filterByDate} label="Filter" type="secondary" />
+                    value={currencyRatesCtx.dateFilter.to_date}
+                    minDate={currencyRatesCtx.dateFilter.from_date}
+                    property="to_date"
+                    handleChange={updateDateFilter}
+                    label='To date' />
+                <Button clickHandler={triggerFilter} label={currencyRatesCtx.filterEnabled ? 'Clear' : 'Filter'} type="secondary" />
             </div>
-            <Table columns={columns} data={currencyRatesCtx.history} />
+            <Table columns={columns} data={filteredHistory()} />
             <DataMobile data={currencyRatesCtx.history} />
         </div>
     )

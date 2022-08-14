@@ -25,7 +25,8 @@ const DateInput = (props) => {
                 {props.label}
             </p>
             <DatePicker selected={props.value}
-                        onChange={(date) => props.handleChange(date)}
+                        minDate={props.minDate ? props.minDate : null}
+                        onChange={(date) => props.handleChange(props.property, date)}
                         customInput={<CustomInput/>} />
         </div>
     )
@@ -35,6 +36,11 @@ DateInput.propTypes = {
     value: PropTypes.object,
     label: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
+    property: PropTypes.string.isRequired,
+    minDate: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ])
 }
 
 export default DateInput;

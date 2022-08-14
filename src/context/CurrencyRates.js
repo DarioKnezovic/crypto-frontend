@@ -8,12 +8,23 @@ const CurrencyRatesContext = createContext({
     currencyRates: {},
     history: [],
     updateHistory: (data) => {},
+    dateFilter: {},
+    setDateFilter: () => {},
+    filterEnabled: false,
+    changeFilterEnabled: () => {}
 })
+
+const DATE_FILTER_INIT = {
+    from_date: null,
+    to_date: null
+}
 
 export const CurrencyRatesContextProvider = (props) => {
     const [currencyRates, setCurrencyRates] = useState({})
     const [history, setHistory] = useState([])
     const [socket, setSocket] = useState(null)
+    const [dateFilter, setDateFilter] = useState(DATE_FILTER_INIT)
+    const [filterEnabled, changeFilterEnabled] = useState(false)
 
     useEffect(() => {
         const newSocket = io(constants.SOCKET_URL, {secure: true});
@@ -40,6 +51,15 @@ export const CurrencyRatesContextProvider = (props) => {
             newSocket.off(constants.SOCKET_EVENTS.CURRENCY_RATES_UPDATE);
         };
     }, [])
+
+    /*
+     * When `filterEnabled` is changed to false, set `dateFilter` object to init
+     */
+    useEffect(() => {
+        if (!filterEnabled) {
+            setDateFilter(DATE_FILTER_INIT)
+        }
+    }, [filterEnabled])
 
     /*
      * Send exchange history to the backend.
@@ -118,7 +138,7 @@ export const CurrencyRatesContextProvider = (props) => {
         setHistory(prevState => [...historyData, ...prevState.slice(2)])
     }
 
-    return <CurrencyRatesContext.Provider value={{currencyRates, history, updateHistory}}>{props.children}</CurrencyRatesContext.Provider>
+    return <CurrencyRatesContext.Provider value={{currencyRates, history, updateHistory, dateFilter, setDateFilter, filterEnabled, changeFilterEnabled}}>{props.children}</CurrencyRatesContext.Provider>
 }
 
 export default CurrencyRatesContext;
