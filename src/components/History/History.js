@@ -104,7 +104,7 @@ const History = () => {
                     label='To date' />
                 <Button clickHandler={triggerFilter} label={currencyRatesCtx.filterEnabled ? 'Clear' : 'Filter'} type="secondary" />
             </div>
-            <Table columns={columns} data={filteredHistory()} />
+            <Table columns={columns} data={filteredHistory()} filterEnabled={currencyRatesCtx.filterEnabled} />
             <DataMobile data={currencyRatesCtx.history} />
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, {useState, useMemo, useEffect} from "react";
 
 import PropTypes from 'prop-types';
 import utils from "../../utils";
@@ -18,6 +18,18 @@ const Table = (props) => {
         const lastPageIndex = firstPageIndex + props.pageSize;
         return props.data.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, props.data]);
+
+    /*
+     * Avoid bug when user is on the last page and filter data, in most cases it'll be blank data table.
+     * So for that case we need to init current index.
+     *
+     * @return void
+     */
+    useEffect(() => {
+        if (props.filterEnabled) {
+            setCurrentPage(1)
+        }
+    }, [props.filterEnabled])
 
     /*
      * Check is exists icon for specific column. If yes, then show it.
@@ -104,13 +116,15 @@ const Table = (props) => {
 }
 
 Table.defaultProps = {
-    pageSize: 5
+    pageSize: 5,
+    filterEnabled: false
 }
 
 Table.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
-    pageSize: PropTypes.number
+    pageSize: PropTypes.number,
+    filterEnabled: PropTypes.bool
 }
 
 export default Table;
