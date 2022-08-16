@@ -46,7 +46,6 @@ const Toolbar = () => {
         const currencyRateKey = checkCryptoFromAmount();
 
         const currencyRate = currencyRatesCtx.currencyRates[currencyRateKey];
-        console.log(currencyRateKey)
         if (currencyRate) {
             const amountTwoValue = utils.getUSDValueFromCryptoCurrency(parseInt(exchange.amount_one), currencyRate);
             setExchange(prevState => ({

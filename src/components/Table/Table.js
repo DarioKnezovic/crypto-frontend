@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 
 import PropTypes from 'prop-types';
 import utils from "../../utils";
 import "./Table.css";
+import Pagination from "./Pagination/Pagination";
 
 const Table = (props) => {
+    const [currentPage, setCurrentPage] = useState(1);
+
+    /*
+     * Slice data depends on current page.
+     *
+     * @return void
+     */
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * props.pageSize;
+        const lastPageIndex = firstPageIndex + props.pageSize;
+        return props.data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, props.data]);
 
     /*
      * Check is exists icon for specific column. If yes, then show it.
@@ -64,26 +77,40 @@ const Table = (props) => {
      * return HTMLElement
      */
     const renderData = () => {
-        return props.data.map((item, index) => renderDataRow(item, index))
+        return currentTableData.map((item, index) => renderDataRow(item, index))
     }
 
     return (
-        <table className="data-table">
-            <thead>
-                <tr>
-                    {renderTableHeader()}
-                </tr>
-            </thead>
-            <tbody>
-                {renderData()}
-            </tbody>
-        </table>
+        <>
+            <table className="data-table">
+                <thead>
+                    <tr>
+                        {renderTableHeader()}
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderData()}
+                </tbody>
+            </table>
+            <Pagination
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={props.data.length}
+                pageSize={props.pageSize}
+                onPageChange={page => setCurrentPage(page)}
+            />
+        </>
     )
+}
+
+Table.defaultProps = {
+    pageSize: 5
 }
 
 Table.propTypes = {
     columns: PropTypes.array.isRequired,
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    pageSize: PropTypes.number
 }
 
 export default Table;
