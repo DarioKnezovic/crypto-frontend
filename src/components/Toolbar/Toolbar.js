@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 
 import "./Toolbar.css";
 import Select from "../Select/Select";
@@ -42,12 +42,13 @@ const Toolbar = () => {
      *
      * @return void
      */
-    const updateAmountTwoValue = (formValue) => {
+    const updateAmountTwoValue = () => {
         const currencyRateKey = checkCryptoFromAmount();
 
         const currencyRate = currencyRatesCtx.currencyRates[currencyRateKey];
+        console.log(currencyRateKey)
         if (currencyRate) {
-            const amountTwoValue = utils.getUSDValueFromCryptoCurrency(parseInt(formValue), currencyRate);
+            const amountTwoValue = utils.getUSDValueFromCryptoCurrency(parseInt(exchange.amount_one), currencyRate);
             setExchange(prevState => ({
                 ...prevState,
                 [constants.EXCHANGE_FORM_KEYS.AMOUNT_TWO]: amountTwoValue
@@ -70,11 +71,18 @@ const Toolbar = () => {
             ...prevState,
             [property]: formValue
         }))
-
-        if (property === constants.EXCHANGE_FORM_KEYS.AMOUNT_ONE) {
-            updateAmountTwoValue(formValue);
-        }
     }
+
+    /*
+     * If is changed currency_from and amount_one update amount_two value.
+     */
+    useEffect(() => {
+        updateAmountTwoValue()
+    }, [exchange.currency_from])
+
+    useEffect(() => {
+        updateAmountTwoValue()
+    }, [exchange.amount_one])
 
     return (
         <div className="toolbar">
