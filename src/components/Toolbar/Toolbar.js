@@ -83,6 +83,16 @@ const Toolbar = () => {
         updateAmountTwoValue()
     }, [exchange.amount_one])
 
+    /*
+     * After click on Save remove saved exchanged data.
+     *
+     * @return void
+     */
+    const saveExchange= () => {
+        currencyRatesCtx.updateHistory(exchange)
+        setExchange(exchangeData)
+    }
+
     return (
         <div className="toolbar">
             <h1 className="title">Exchange</h1>
@@ -117,7 +127,7 @@ const Toolbar = () => {
                     disabled={true}
                 />
 
-                <Button clickHandler={() => currencyRatesCtx.updateHistory(exchange)} label="Save" />
+                <Button clickHandler={() => saveExchange()} label="Save" />
             </div>
         </div>
     )

@@ -84,3 +84,13 @@
 .pagination-container .pagination-item.arrows:nth-child(2) {
     margin-left: 15px;
 }
+
+/*
+    MOBILE DEVICES
+ */
+
+@media (max-width:480px)  {
+    .pagination-container {
+        display: none;
+    }
+}

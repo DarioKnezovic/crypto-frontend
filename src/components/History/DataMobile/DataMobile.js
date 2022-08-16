@@ -84,7 +84,7 @@ const DataMobile = (props) => {
                     </React.Fragment>
                 }
 
-                <button className="close-button">Close</button>
+                <button onClick={() => closeModal()} className="close-button">Close</button>
             </Modal>
             <div className="history-data-mobile">
                 {renderData()}
