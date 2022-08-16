@@ -8,7 +8,7 @@ const Input = (props) => {
         <div className="input-group">
             <label>{props.label}</label>
             <input
-                value={props.value}
+                value={props.value || ''}
                 onChange={(e) => props.handleChange(null, props.property, props.type === 'text' ? e.target.value : parseInt(e.target.value))}
                 disabled={props.disabled}
                 className="form-input"
