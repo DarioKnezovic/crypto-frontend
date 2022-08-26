@@ -18,14 +18,21 @@ table.data-table > thead > tr > th {
     color: #000000;
     text-align: left;
     padding: 5px 9px;
+    cursor: pointer;
 }
 
-table.data-table > thead > tr > th:first-child {
+table.data-table > thead > tr > th.sorted {
     font-weight: 700;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 table.data-table .column-icon {
     margin-right: 9px;
+    width: 12px;
+    height: 7px;
 }
 
 table.data-table > tbody > tr > td {

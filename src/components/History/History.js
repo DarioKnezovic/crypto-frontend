@@ -37,7 +37,6 @@ const History = () => {
     const columns = [
         {
             name: 'Date & Time',
-            icon: 'sort.svg',
             key: 'date',
             format: utils.formatDate,
         },
