@@ -51,8 +51,8 @@ const formatDate = (date) => {
     const year = formattedDate.getFullYear();
     let month = formattedDate.getMonth() + 1; // Months start at 0!
     let day = formattedDate.getDate();
-    let hour = formattedDate.getUTCHours();
-    let minutes = formattedDate.getUTCMinutes();
+    let hour = formattedDate.getHours();
+    let minutes = formattedDate.getMinutes();
 
     if (day < 10) day = '0' + day;
     if (month < 10) month = '0' + month;
